@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "target": "ES6",
+    "module": "NodeNext",
+    "lib": ["es6"],
+    "allowJs": true,
+    "outDir": "build",
+    "rootDir": ".",
+    "strict": true,
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "baseUrl": "./src", // This must be specified if "paths" is.
+    "paths": {
+      "@Controller/*": ["controller/*"],
+      "@Router/*": ["router/*"],
+      "@Services/*": ["services/*"],
+      "@utility/*": ["utility/*"]
+    }
+  }
+}

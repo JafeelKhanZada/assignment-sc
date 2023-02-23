@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model EntryPoints {
+  id           Int       @id @default(autoincrement())
+  name         String
+  distance     Int       @default(0)
+  EntryEntries Entries[] @relation("Entry_Relate_Entries")
+  ExistEntries Entries[] @relation("Exit_Relate_Entries")
+}
+
+model Entries {
+  id        Int          @id @default(autoincrement())
+  entryId   Int
+  entry     EntryPoints  @relation("Entry_Relate_Entries", fields: [entryId], references: [id])
+  exitId    Int?
+  exit      EntryPoints? @relation("Exit_Relate_Entries", fields: [exitId], references: [id])
+  entryDate DateTime
+  exitDate  DateTime?
+  plate     String
+  amount    Float        @default(0)
+  discount  Float        @default(0)
+  peak      Float        @default(0)
+  distance  Float        @default(0)
+}
